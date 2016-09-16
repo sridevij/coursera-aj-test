@@ -11,23 +11,24 @@
     
     $scope.checkLunch = function(){
     	var str=$scope.menuText;
-    	if (str!=undefined)
+    	if (str==undefined || str=="")
     	{
-    	$scope.myStyle=
-    		{
-    			"border" : "3px solid green",
-    			"color" : "green",   	
-    		}
-    	}
-    	else
-    	{
-    	$scope.result="Please enter data first";
+    		$scope.result="Please enter data first";
     	$scope.myStyle=
     		{
     			"border" : "2px solid red",
     			"color" : "red",    			
     		}
     		return false;
+    	
+    	}
+    	else
+    	{
+    	  $scope.myStyle=
+    		{
+    			"border" : "3px solid green",
+    			"color" : "green",   	
+    		}
     	}	
     	var menuList=str.split(",");
     	var len=menuList.length;
