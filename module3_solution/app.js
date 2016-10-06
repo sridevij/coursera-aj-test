@@ -6,7 +6,7 @@
   .controller('NarrowItDownController', NarrowItDownController)
   .service('MenuSearchService', MenuSearchService)
   .directive('foundItems', FoundItems)
-  .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com");
+  .constant('ApiBasePath', "http://davids-restaurant.herokuapp.com");
 
   function FoundItems(){
      var ddo = {
@@ -27,13 +27,18 @@
 
     foundListItem.found = function (){
        foundListItem.itemList=[];
+       if (foundListItem.textTosearch=="")
+       {
+         foundListItem.errorMessage="Item not found";
+       }
+       else{
       var promise= MenuSearchService.getMatchedMenuItems(foundListItem.textTosearch);
       console.log(promise);
        
       promise.then(function (response) {
            foundListItem.itemList = response;
            console.log(foundListItem.itemList.length);
-           if(foundListItem.itemList.length===0 || foundListItem.textTosearch="")
+           if(foundListItem.itemList.length===0)
            {
              foundListItem.errorMessage="Item not found";
            }
@@ -43,8 +48,8 @@
             }
           });      
           console.log( foundListItem.found);
-      };
-     
+      }
+     };
      foundListItem.remove= function(itemIndex){
       MenuSearchService.removeItem(itemIndex);
      };
@@ -59,8 +64,6 @@
     
   	service.getMatchedMenuItems=function(searchTerm){
       foundItems=[];
-      if(searchTerm!="")
-      {  
       return $http({
 
         method: "GET",
@@ -87,7 +90,7 @@
           return foundItems;
         });
        
-        }
+        
         };
  
         
