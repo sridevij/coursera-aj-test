@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    
+  </head>
+<body ng-app='NarrowItDownApp'>
+   <div class="container" ng-controller='NarrowItDownController as searchItem'>
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
+
+    <div class="form-group">
+      <input type="text" ng-model="searchItem.textTosearch" placeholder="search term" class="form-control">
+    </div>
+    <div class="form-group narrow-button">
+      <button class="btn btn-primary" ng-click="searchItem.found()">Narrow It Down For Me!</button>
+    </div>
+ <!--  <div ng-repeat="item in searchItem.itemList">
+          <div class="row">
+            <div class="col-xs-4">
+              <p>
+                {{item.id}}
+              </p>
+              <p>
+                {{item.short_name}}
+              </p>
+            </div>
+            <div class="col-xs-8">
+              <p>{{item.name}}</p>
+              <p>
+                {{item.description}}
+              </p>
+              <p>
+                {{item.price_small}}
+              </p>
+              <p>
+                {{item.price_large}}
+              </p>
+              <p>
+                {{item.small_portion_name}}
+              </p>
+              <p>
+                {{item.large_portion_name}}
+              </p>
+            </div>
+          </div>
+    </div>-->
+    <!-- Bonus loader (see Bonus section of the assignment) -->
+    <items-loader-indicator></items-loader-indicator>
+
+
+    <!--<table style="width:100%">
+     <tr>
+         <th>Firstname</th>
+         <th>Lastname</th> 
+         <th>Age</th>
+      </tr>
+      <tr ng-repeat="item in searchItem.itemList">
+       <found-items> </found-items>
+      </tr>
+    </table>  -->
+    <!--found-items should be implemented as a component -->
+   <!--<found-items found-items="...." on-remove="...."></found-items>-->
+   
+   <div style="width:100%" class="col-lg-12">
+      <found-items found-item="searchItem" on-remove="searchItem.remove(index)"></found-items>
+   
+   </div>
+   <div style="width:100%" class="col-lg-12">{{ searchItem.errorMessage}}</div>
+  </div>
+
+</body>
+</html>
