@@ -51,8 +51,8 @@
     
   }
   
-  MenuSearchService.$inject=['$https', 'ApiBasePath']
-  function MenuSearchService($https, ApiBasePath)
+  MenuSearchService.$inject=['$http', 'ApiBasePath']
+  function MenuSearchService($http, ApiBasePath)
   {
   	var service=this;
      var foundItems;
