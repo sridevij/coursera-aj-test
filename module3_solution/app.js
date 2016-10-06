@@ -33,7 +33,7 @@
       promise.then(function (response) {
            foundListItem.itemList = response;
            console.log(foundListItem.itemList.length);
-           if(foundListItem.itemList.length===0)
+           if(foundListItem.itemList.length===0 || foundListItem.textTosearch="")
            {
              foundListItem.errorMessage="Item not found";
            }
@@ -59,6 +59,8 @@
     
   	service.getMatchedMenuItems=function(searchTerm){
       foundItems=[];
+      if(searchTerm!="")
+      {  
       return $http({
 
         method: "GET",
@@ -85,7 +87,7 @@
           return foundItems;
         });
        
-        
+        }
         };
  
         
